@@ -3,7 +3,7 @@ import "./FetchData.css";
 
 const FetchData = () => {
   const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(true); // Initialize loading to true
+  const [loading, setLoading] = useState(true);
 
   const getData = async () => {
     try {
@@ -14,22 +14,20 @@ const FetchData = () => {
       setList(data);
     } catch (error) {
       console.error("Error fetching data:", error);
-      // Handle error here, e.g., show an error message to the user
     } finally {
-      setLoading(false); // Set loading to false whether data is fetched successfully or not
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    if(list){
-        setTimeout(() => {
-            getData();
-          }, 1200);
+    if (list) {
+      setTimeout(() => {
+        getData();
+      }, 1200);
     }
-    
   }, []);
 
-//   console.log(list);
+  //   console.log(list);
 
   return (
     <div>
