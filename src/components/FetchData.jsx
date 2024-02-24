@@ -20,47 +20,46 @@ const FetchData = () => {
   };
 
   useEffect(() => {
-    if (list) {
+   
       setTimeout(() => {
         getData();
       }, 1200);
-    }
+    
   }, []);
 
   //   console.log(list);
 
   return (
     <div>
-      {loading ? (
+     {list.length === 0 && loading ? ( // Check if list is empty and loading is true
         <div className="loader"></div>
       ) : (
         <table>
           <tbody>
-            {list.length > 0 &&
-              list.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <div className="first_td">
-                      <img src={item.image} alt="" />
-                      <div>{item.name}</div>
-                    </div>
-                  </td>
-                  <td>{item.symbol.toUpperCase()}</td>
-                  <td>${item.current_price} </td>
-                  <td>${item.total_volume.toLocaleString("en-US")}</td>
-                  <td
-                    style={{
-                      color:
-                        item.price_change_percentage_24h > 0
-                          ? "rgb(71, 242, 19)"
-                          : "red",
-                    }}
-                  >
-                    {item.price_change_percentage_24h.toFixed(2)}%
-                  </td>
-                  <td>Mkt Cap: ${item.market_cap.toLocaleString("en-US")}</td>
-                </tr>
-              ))}
+            {list.map((item) => (
+              <tr key={item.id}>
+                <td>
+                  <div className="first_td">
+                    <img src={item.image} alt="" />
+                    <div>{item.name}</div>
+                  </div>
+                </td>
+                <td>{item.symbol.toUpperCase()}</td>
+                <td>${item.current_price} </td>
+                <td>${item.total_volume.toLocaleString("en-US")}</td>
+                <td
+                  style={{
+                    color:
+                      item.price_change_percentage_24h > 0
+                        ? "rgb(71, 242, 19)"
+                        : "red",
+                  }}
+                >
+                  {item.price_change_percentage_24h.toFixed(2)}%
+                </td>
+                <td>Mkt Cap: ${item.market_cap.toLocaleString("en-US")}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       )}
